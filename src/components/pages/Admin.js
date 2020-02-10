@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Navigation from '../layout/Navigation';
 import {Accordion,Card,Table,Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
@@ -7,7 +7,7 @@ import {getCompanies} from '../../actions/companyActions';
 import {deleteRoom} from '../../actions/roomActions';
 import DeleteCompany from '../../components/pages/companyOps/DeleteCompany';
 import PropTypes from 'prop-types';
-import AuthorisError from '../pages/error/AuthorisError'
+import {Redirect} from 'react-router-dom';
 
 class Admin extends Component {
   componentDidMount(){
@@ -23,12 +23,12 @@ class Admin extends Component {
   }
   render() {
     const {companies,auth} = this.props;
-    console.log(companies);
+    //console.log(companies);
     if(auth.isAuthenticated){
       return (
-        <div className="adminBg">
+        <div className="adminBg my-2">
               <Navigation/>
-              <h1 style={{color:'black'}} className="p-4">All Rooms</h1>
+              <h1 style={{color:'black'}} className="p-4">All Companies</h1>
               <Accordion style={{width:'50rem', textAlign:'center'}} className="mx-auto">
               {companies.map(company =>
               {
@@ -37,25 +37,28 @@ class Admin extends Component {
                   <Card key={company._id}>
                   <Card.Header>
                     <Accordion.Toggle as={Card.Header} eventKey={company._id} style={{color:'black', cursor:'pointer'}}>
-                  {company.name}
+                  {company.name} {'('} {rooms.length} {')'}
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={company._id}>
                 <Card.Body>
+                <Link to={`/addImg/${company._id}`}><img src={company.imageURL} className="my-2 rounded-circle w-25 ml-auto "/></Link> 
                   <div className="d-flex justify-content-between"> 
                  <Link to={`/addRoom/${company._id}`}><p className="p-1">Add Room</p></Link>{' '} <Link to={`/editCompany/${company._id}`}><p className="p-1">Edit Company</p></Link>
                 <DeleteCompany id={company._id}></DeleteCompany>
                 </div>  
                 <Table striped bordered hover>
             <tbody>
-                {rooms.map(room => (
-              <tr key={room._id} style={{textAlign:'center'}}>
-   <td>1</td>
-   <td>{room.name}</td>
-   <td>  <Link to={`/editRoom/${company._id}/${room._id}`}><Button variant="warning" className="mb-1">Edit</Button></Link>
-   <Button variant="danger" onClick={()=> {this.deleteRoom(company._id,room._id)}}>Delete</Button>
-          </td></tr>
-                ))}
+                {rooms.map(room => 
+                    {
+                  return <Fragment  key={room._id}> 
+                  <tr style={{textAlign:'center'}}>
+                  <td>{room.name}</td>
+                  <td>  <Link to={`/editRoom/${company._id}/${room._id}`}><Button variant="warning" className="mr-2">Edit</Button></Link>
+                  <Button variant="danger" onClick={()=> {this.deleteRoom(company._id,room._id)}}>Delete</Button>
+                         </td></tr> 
+                         </Fragment>
+                })}
             </tbody>
           </Table>
                 </Card.Body>
@@ -76,7 +79,7 @@ class Admin extends Component {
   else{
     return(
       <div>
-          <AuthorisError/>
+          <Redirect to="/"/>
       </div>
     )
   }
@@ -85,7 +88,7 @@ class Admin extends Component {
 
 Admin.propTypes={
   getCompanies: PropTypes.func.isRequired,
-  company:PropTypes.object.isRequired,
+  companies:PropTypes.array.isRequired,
   deleteRoom: PropTypes.func.isRequired,
   auth:PropTypes.object.isRequired
 }

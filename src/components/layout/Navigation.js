@@ -1,15 +1,25 @@
 import React from 'react';
-import {Navbar,Nav} from 'react-bootstrap'
+import {Navbar,Nav} from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {logout} from '../../actions/authActions';
 
- function Navigation() {
+ function Navigation({auth,logout}) {
     return (
         <Navbar bg="dark" variant="dark">
     <Nav className="ml-auto">
       <Nav.Link href="/allCompanies">Escape Rooms</Nav.Link>
-      <Nav.Link href="#register">Register</Nav.Link>
-      <Nav.Link href="#login">Login</Nav.Link>
+      {auth.isAuthenticated ?  <Nav.Link href="#login" onClick={logout}>SignOut</Nav.Link> : <Nav.Link href="#login">Login</Nav.Link>
+}
     </Nav>
   </Navbar>
     )
 }
-export default Navigation
+Navigation.propTypes={
+  auth:PropTypes.object.isRequired
+}
+const mapStateToProps = state => ({
+  auth:state.auth,
+  logout: PropTypes.func.isRequired
+})
+export default connect(mapStateToProps, {logout}) (Navigation);

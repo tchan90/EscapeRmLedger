@@ -6,23 +6,22 @@ import Navigation from '../../layout/Navigation';
 import {Form,Button,Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-
  class AddCompany extends Component {
    state={
      name:'',
      address:'',
      information:'',
      website:'',
-     url:'',
+     image:'https://via.placeholder.com/150',
      errors:{}
    }
    handleChange = (e) =>{
     this.setState({[e.target.name]: e.target.value})
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit')
-    const { name, address, information, website, url } = this.state;
+    const { name, address, information, website, image } = this.state;
     //check errors
     if(name ===''){
       this.setState({
@@ -48,23 +47,18 @@ import {Link} from 'react-router-dom';
       });
       return;
     }
-    if(url ===''){
-      this.setState({
-        errors:{url:'Please enter url'}
-      });
-      return;
-    }
-    const company = { name, address, information, website, url};
+    const company = { name, address, information, website, image};
     try{
       this.props.addCompany(company)
       .then(()=>this.props.history.push('/admin'))
+      console.log(company)
     }catch(error){
       console.log(error);
     }
   };
 
   render() {
-    const {errors} = this.state
+    const {errors} = this.state;
     return (
       <div>
          <Navigation/>
@@ -86,10 +80,6 @@ import {Link} from 'react-router-dom';
   <Form.Group>
     <Form.Control name="website" type="text" placeholder="Website" onChange={this.handleChange}/>
     {errors.website && <p style={{color:'red'}}>Website Address is required</p>}
-  </Form.Group>
-  <Form.Group>
-    <Form.Control name="url" type="text" placeholder="Image URL" onChange={this.handleChange}/>
-    {errors.url && <p style={{color:'red'}}>Image URL is required</p>}
   </Form.Group>
   <Button variant="primary" type="submit">
     Submit

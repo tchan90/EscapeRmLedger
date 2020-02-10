@@ -27,7 +27,8 @@ import SignOut from '../auth/SignOut'
         }
         if (this.state.modal) {
             if(isAuthenticated){
-                this.toggle();
+                this.props.history.push('/admin')
+                //this.toggle();
             }
           }
     }
@@ -44,19 +45,15 @@ import SignOut from '../auth/SignOut'
             password:this.state.password
         }
         this.props.login(user);
-        const {error} = this.props;
-        if(error.id === "LOGIN_SUCCESS")(
-            this.toggle()
-
-        )
+        console.log('login success')
      }
 
     render() {
         const{email,password} = this.state;
-        const{isAuthenticated} = this.props;
+        const{isAuthenticated,history} = this.props;
         return (
 <div> 
-    {isAuthenticated?<SignOut/>: <Button variant="secondary" href="#" size="lg" block style={{marginTop:'15px'}} onClick={this.toggle}>Login</Button> }
+    {isAuthenticated?<SignOut history={history}/>: <Button variant="secondary" href="#" size="lg" block style={{marginTop:'15px'}} onClick={this.toggle}>Login</Button> }
 
             <Modal show={this.state.modal} toggle={this.toggle}>
             <Form onSubmit={this.onSubmit}>

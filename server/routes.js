@@ -1,6 +1,6 @@
 const CompanyController = require('./controllers/companyController');
 const RoomController = require('./controllers/roomController');
-const UserController = require('./controllers/UserController')
+const UserController = require('./controllers/UserController');
 //authorization middleware
 const auth = require('./middleware/auth')
 module.exports = (app) => {
@@ -14,7 +14,7 @@ module.exports = (app) => {
     app.put('/updateCompany/:id', CompanyController.updateCompany)
     //delete company
     app.delete('/deleteCompany/:id', CompanyController.deleteCompany)
-    
+        
     //add room
     app.post('/addRoom/:id', RoomController.postRoom)
     //edit room

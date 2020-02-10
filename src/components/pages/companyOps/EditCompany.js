@@ -13,7 +13,6 @@ import {Link} from 'react-router-dom';
      address:'',
      information:'',
      website:'',
-     url:'',
      errors:{}
    }
    handleChange = (e) =>{
@@ -26,19 +25,19 @@ import {Link} from 'react-router-dom';
   }
   //Display props in the input fields
   componentWillReceiveProps(nextProps){
-    const { name, address, information, website, url } = nextProps.company;
+    const { name, address, information, website } = nextProps.company;
     this.setState({
       name,
      address,
      information,
      website,
-     url    })
+         })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('submit')
-    const { name, address, information, website, url } = this.state;
+    const { name, address, information, website } = this.state;
     //check errors
     if(name ===''){
       this.setState({
@@ -64,14 +63,8 @@ import {Link} from 'react-router-dom';
       });
       return;
     }
-    if(url ===''){
-      this.setState({
-        errors:{url:'Please enter url'}
-      });
-      return;
-    }
     const { id } = this.props.match.params;
-    const company = { name, address, information, website, url};
+    const company = { name, address, information, website};
     try{
       this.props.editCompany(id,company)
       .then(()=>this.props.history.push('/admin'))
@@ -81,7 +74,7 @@ import {Link} from 'react-router-dom';
   };
 
   render() {
-    const {errors,name,address,information,website,url} = this.state
+    const {errors,name,address,information,website} = this.state
     return (
       <div>
          <Navigation/>
@@ -103,10 +96,6 @@ import {Link} from 'react-router-dom';
   <Form.Group>
     <Form.Control value={website} name="website" type="text" placeholder="Website" onChange={this.handleChange}/>
     {errors.website && <p style={{color:'red'}}>Website Address is required</p>}
-  </Form.Group>
-  <Form.Group>
-    <Form.Control value={url} name="url" type="text" placeholder="Image URL" onChange={this.handleChange}/>
-    {errors.url && <p style={{color:'red'}}>Image URL is required</p>}
   </Form.Group>
   <Button variant="primary" type="submit">
     Submit

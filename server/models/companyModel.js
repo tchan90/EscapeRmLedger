@@ -37,7 +37,7 @@ const companySchema = new Schema({
     required:true,
     trim:true
   },
-  image:{
+  imageURL:{
     type:String,
   },
   rooms:[roomSchema],
