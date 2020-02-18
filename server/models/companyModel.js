@@ -11,7 +11,19 @@ const roomSchema = new Schema({
     type:String,
     required:true,
     trim:true
+  },
+difficulty:{
+  type:String,
+  trim:true
+},
+teamSize:{
+  minNumber:{
+    type:Number,
+  },
+  maxNumber:{
+    type:Number,
   }
+}
 }, {
   timestamps: true,
 });

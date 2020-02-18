@@ -10,12 +10,6 @@ const app = express();
 const apiPort = 5000;
 require('dotenv').config();
 
-cloudinary.config({ 
-  cloud_name: process.env.CLOUD_NAME, 
-  api_key: process.env.API_KEY, 
-  api_secret: process.env.API_SECRET
-})
-
 app.use(bodyParser.urlencoded({ extended: true }), formData.parse())
 app.use(cors({ 
   origin: CLIENT_ORIGIN,
@@ -24,10 +18,16 @@ app.use(cors({
 app.use(bodyParser.json())
 
 //cloudinary
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET
+})
+
 app.post('/image-upload', (req, res) => {
 
   const values = Object.values(req.files)
-  const promises = values.map(image => cloudinary.uploader.upload(image.path, {folder:"escapermledger"}))
+  const promises = values.map(image => cloudinary.uploader.upload(image.path))
   
   Promise
     .all(promises)
@@ -36,6 +36,7 @@ app.post('/image-upload', (req, res) => {
 })
 //
 
+//MongoDB
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify:false }, (err) => {
   if(err)
@@ -46,6 +47,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedT
     );
 
 console.log('Mongoose connection ready state: ' + mongoose.connection.readyState);
+//
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

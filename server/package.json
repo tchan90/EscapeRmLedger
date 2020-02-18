@@ -17,6 +17,7 @@
     "express-form-data": "^2.0.11",
     "mongoose": "^5.8.10",
     "passport-jwt": "^4.0.0",
+    "typescript": "^3.7.5",
     "validator": "^12.2.0"
   },
   "devDependencies": {

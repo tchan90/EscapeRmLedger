@@ -1,98 +1,104 @@
-.App{
-  flex:1 0 auto;
-  color:white;
+.App {
+	flex: 1 0 auto;
+	color: white;
 }
-a{
-  text-decoration:none;
+a {
+	text-decoration: none;
 }
-a :hover{
-  text-decoration:none;
+a :hover {
+	text-decoration: none;
 }
-.landingPg{
-  background: url('https://images.unsplash.com/photo-1484043937869-a468066a4fbd?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9') no-repeat bottom center/cover;
-  height:100%;
-  position:relative;
+.landingPg {
+	background: url("https://images.unsplash.com/photo-1484043937869-a468066a4fbd?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9")
+		no-repeat bottom center/cover;
+	height: 100%;
+	position: relative;
 }
-.landingWrapper{
-  top:0;
-  left:0;
-  position:absolute;
-  height:100%;
-  width:100%;
-  background-color: rgba(0,0,0,0.4)
+.landingWrapper {
+	top: 0;
+	left: 0;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
 }
-.landingMenu{
-  width: 400px;
-  height:400px;
-  background-color:rgba(0,0,0,0.7);
-  position:relative;
-  margin:0px auto;
-  top:15%;
-  padding:15px 5px;
-  border-radius:5px;
-  border:1px solid rgb(197, 197, 197);
+.landingMenu {
+	width: 400px;
+	height: 400px;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: relative;
+	margin: 0px auto;
+	top: 15%;
+	padding: 15px 5px;
+	border-radius: 5px;
+	border: 1px solid rgb(197, 197, 197);
 }
-.menuTitle{
-  color:white;
-  font-size:40px;
-  text-align:center;
-  font-family: 'Girassol', cursive;
+.menuTitle {
+	color: white;
+	font-size: 40px;
+	text-align: center;
+	font-family: "Girassol", cursive;
 }
 ul {
-  list-style:none;
-  padding:0;
+	list-style: none;
+	padding: 0;
 }
-.landingLinks{
-  margin-top:40px;
-  padding-left:10px;
-  padding-right:10px;
-  margin-right:auto;
-  margin-left:auto;
+.landingLinks {
+	margin-top: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: auto;
+	margin-left: auto;
 }
-.landingLinks>li>a:hover{
-  text-decoration:none;
+.landingLinks > li > a:hover {
+	text-decoration: none;
 }
-.dashboard{
-  background-color:black;
+.dashboard {
+	background-color: black;
 }
-.allRoomsWrapper{
-  background-color:black;
-  height:100%;
-  position:relative;
+.allRoomsWrapper {
+	background-color: rgb(8, 8, 8);
+	height: 100%;
+	position: relative;
 }
-.roomCard{
- width:18rem;
- height:15rem;
+.roomCard {
+	width: 18rem;
+	height: 15rem;
 }
-.cardTitle{
-  color:white;
+.cardTitle {
+	color: white;
 }
-.overlay{
-  top:0;
-  left:0;
-  position:absolute;
-  height:100%;
-  width:100%;
-  background-color:rgba(0,0,0,0.6);
-  transition-duration:0.5s;
+.overlay {
+	top: 0;
+	left: 0;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	transition-duration: 0.5s;
 }
-.overlay:hover{
-  background-color:rgba(0,0,0,0.3);
+.overlay:hover {
+	background-color: rgba(0, 0, 0, 0.3);
 }
-.innerText{
-  display:flex;
-    flex-direction: column;
-    color: white;
-    align-items:flex-start;
-    justify-content: center;
-    padding-left:10px;
-    text-align:center;
-    margin:auto;
-    height:100%;
+.innerText {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	align-items: flex-start;
+	justify-content: center;
+	padding-left: 10px;
+	text-align: center;
+	margin: auto;
+	height: 100%;
 }
-.adminBg{
-  background-color:rgb(255, 255, 255);
-  height:100%;
-  position:relative;
+.innerText > p {
+	font-style: italic;
+	text-align: left;
+	font-size: 14px;
+	margin-top: 10px;
 }
-
+.adminBg {
+	background-color: rgb(255, 255, 255);
+	height: 100%;
+	position: relative;
+}
